@@ -17,7 +17,13 @@
                 </li>
             </ul>
             <form class="d-flex">
-                <a href="login.php" class="btn btn-primary"><i class="fa-solid fa-user"></i> Aanmelden</a>
+                <?php // Laat op basis van sessie specifieke knoppen zien
+                if($_SESSION['user']):?>
+                    <a href="./login.php" class="btn btn-primary me-2"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+                    <a href="./logout.php" class="btn btn-secondary"><i class="fa-solid fa-right-from-bracket"></i></a>
+                <?php else:?>
+                    <a href="./login.php" class="btn btn-primary"><i class="fa-solid fa-user"></i> Aanmelden</a>
+                <?php endif;?>
             </form>
         </div>
     </div>
