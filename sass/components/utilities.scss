@@ -1,0 +1,10 @@
+section {
+  @extend .pt-5;
+  @extend .pb-5
+}
+
+.card {
+  @extend .border-0;
+  background-size: cover;
+  height: 250px;
+}
