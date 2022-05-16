@@ -1,3 +1,10 @@
+
+<?php
+session_start();
+if($_SESSION['user']) {
+    include('assets/include/index.php');
+}
+?>
 <!doctype html>
 <html lang="en">
 <head>
