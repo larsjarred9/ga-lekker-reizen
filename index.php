@@ -20,6 +20,14 @@
     <section class="container">
         <h2>Reizen</h2>
         <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1">
+            <?php
+            require_once('assets/include/config.php');
+            $locations = $database->select('Locations', ['title','location','description','capacity']);
+
+//            foreach($locations as $location):
+//                var_dump($location);
+//            endforeach;
+            ?>
             <div class="col">
                 <div class="card" style="background-image: url('https://images.unsplash.com/photo-1495562569060-2eec283d3391?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80')">
                     <div class="card-body">
