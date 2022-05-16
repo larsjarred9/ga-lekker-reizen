@@ -59,14 +59,7 @@ if($_SESSION['user']) {
     </div>
 </section>
 
-<footer class="bg-primary">
-    <div class="container-fluid text-white">
-        <div class="d-flex justify-content-between pt-3 pb-3">
-            <img src="assets/images/logo.png" height="125px">
-            <p class="align-self-center mt-3">© Ga Lekker Reizen - <?= date("Y"); ?>, Rechten voortbehouden</p>
-        </div>
-    </div>
-</footer>
+<?php include('assets/include/footer.php')?>
 
 
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
