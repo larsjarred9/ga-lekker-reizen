@@ -26,7 +26,7 @@ if($_SESSION['user']['role'] != 1) {
 <section class="container">
     <?php
     if(!$_GET['id']) {
-        header('location: ../../admin/index.php?error=Reis kon niet gevonden worden');
+        header('location: index.php?error=Reis kon niet gevonden worden');
     }
     if($_GET['error']) {
         echo '<div class="alert alert-danger" role="alert">'.$_GET['error'].'</div>';
