@@ -11,6 +11,7 @@ if(isset($_FILES["image"])) {
     // Alleen JPG & JPEG
     if ($imageFileType != "jpg" && $imageFileType != "jpeg") {
         header('location: ../../admin/createTrip.php?error=Alleen JPG en JPEG afbeeldingen mogen worden geupload');
+        return false;
     } else {
         // Toevoegen aan database
         $database->insert("Locations", [
@@ -30,11 +31,13 @@ if(isset($_FILES["image"])) {
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $new_target)) {
             header('location: ../../admin/index.php?success=Reis is successvol toegevoegd');
         } else {
-            header('location: ../../admin/createTrip.php?error=Er iets verkeerd gegaan met het upslaan van de afbeelding');
+            header('location: ../../admin/createTrip.php?error=Er iets verkeerd gegaan met het opslaan van de afbeelding');
+            return false;
         }
     }
 } else {
-    header('location: ../../admin/createTrip.php?error=Er iets verkeerd gegaan met het upslaan van de afbeelding');
+    header('location: ../../admin/createTrip.php?error=Er iets verkeerd gegaan met het opslaan van de afbeelding');
+    return false;
 }
 
 
