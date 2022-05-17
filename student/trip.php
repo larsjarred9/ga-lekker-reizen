@@ -68,19 +68,18 @@ if($_SESSION['user']['role'] != 0) {
             <input value="<?= $_SESSION['user']['last_name'] ?>" readonly class="form-control">
 
             <label class="mt-3">Student Nummer</label>
-            <input required name="student_number" maxlength="6" type="number" class="form-control">
+            <input required name="student_number"min="1" max="99999" type="number" class="form-control">
 
             <label class="mt-3">BSN Nummer</label>
-            <input required name="bsn" maxlength="9" type="number" class="form-control">
+            <input required name="bsn" min="1" max="999999999" type="number" class="form-control">
 
 
             <label class="mt-3">Additionele Informatie</label>
-            <textarea required name="remark" class="form-control"></textarea>
+            <textarea name="remark" class="form-control"></textarea>
             <p><small>Vul hier gegevens in over bijvoorbeeld alergenen of lichamelijke klachten.</small></p>
 
 
             <button type="submit" name="submit" class="btn btn-primary mt-3">Inschrijven</button>
-
         </form>
         <?php else:?>
             <p>Je bent al aangemeld voor deze reis. Indien u zich wil afmelden kan dit gemakkelijk via de onderstaande knop doen. Indien u al een betaling heeft verricht moet u contact met ons opnemen.</p>
