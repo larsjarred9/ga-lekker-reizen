@@ -1,4 +1,9 @@
-<?php require_once('../assets/include/config.php');?>
+<?php require_once('../assets/include/config.php');
+if($_SESSION['user']['role'] != 1) {
+    header('location: ../login.php');
+}
+
+?>
 <!doctype html>
 <html lang="nl">
 <head>

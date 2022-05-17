@@ -1,5 +1,8 @@
 <?php
 require_once('config.php');
+if($_SESSION['user']['role'] != 1) {
+    header('location: ../../login.php');
+}
 
 if(isset($_FILES["image"])) {
     $target_dir = "../images/uploads/";
