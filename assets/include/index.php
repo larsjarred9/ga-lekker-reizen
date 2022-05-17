@@ -6,7 +6,7 @@ if($_SESSION['user']['role'] == 1) {
     header('location: ../../admin/index.php');
 }
 else {
-    header('location: ../../student/index.php');
+    header('location: ../../index.php');
 }
 
 ?>
