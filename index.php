@@ -19,13 +19,18 @@
 
     <section class="container">
         <h2>Reizen</h2>
+        <?php if($_SESSION['user']):?>
+        <p>Klik op een een reis voor meer informatie over de reis en om je uit en in te schrijven voor een reis.</p>
+        <?php else:?>
+        <p>Inschrijven voor een reis? Je moet eerst <a href="login.php" class="text-decoration-none text-primary">inloggen</a> voordat je kunt inschrijven op een reis.</p>
+        <?php endif;?>
         <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1">
             <?php
             $locations = $database->select('Locations', ['id','title','location','description','begin_date','end_date','capacity']);
 
             foreach($locations as $location):?>
                 <div class="col">
-                    <a href="login.php" class="text-decoration-none">
+                    <a href="<?php if($_SESSION['user']) {echo 'student/trip.php?id='.$location['id'];} else {echo 'login.php';}?>" class="text-decoration-none">
                         <div class="card" style="background-image: url('assets/images/uploads/<?= $location['id'] ?>.jpg')">
                             <div class="card-body d-flex align-self-end">
                                 <div class="d-flex justify-content-end">
