@@ -19,37 +19,42 @@
 </header>
 
 <section class="container">
-    <a href="" class="btn btn-primary float-end">Reis toevoegen</a>
+    <?php
+    if($_GET['success']) {
+        echo '<div class="alert alert-success role="alert">'.$_GET['success'].'</div>';
+    }
+
+    if ($_GET['error']) {
+        echo '<div class="alert alert-danger" role="alert">' . $_GET['error'] . '</div>';
+    }
+    ?>
+    <a href="createTrip.php" class="btn btn-primary float-end">Reis toevoegen</a>
     <h2>Reizen</h2>
     <p>Beheer & bekijk hier gemakkelijk de aangemaakte reizen. Klik op een reis voor meer details om inschrijvingen te zien en om wijzigingen aan te brengen.</p>
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1">
-        <div class="col">
-            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1495562569060-2eec283d3391?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80')">
-                <div class="card-body">
-                    <p>Test</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1495562569060-2eec283d3391?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80')">
-                <div class="card-body">
-                    <p>Test</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1495562569060-2eec283d3391?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80')">
-                <div class="card-body d-flex align-self-end">
-                    <div class="d-flex justify-content-end">
-                        <div class="d-flex align-self-end">
-                            <p class="bg-light p-2 text-center fs-5">20 December<br>2022</p>
+        <?php
+        $locations = $database->select('Locations', ['id','title','location','description','begin_date','end_date','capacity']);
+
+        foreach($locations as $location):?>
+            <div class="col">
+                <div class="card" style="background-image: url('../assets/images/uploads/<?= $location['id'] ?>.jpg')">
+                    <div class="card-body d-flex align-self-end">
+                        <div class="d-flex justify-content-end">
+                            <div class="d-flex align-self-end">
+                                <p class="bg-light p-2 text-center fs-5"><?= date('d M Y',strtotime($location['begin_date'])) ?></p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <h3 class="mt-3"><?= $location['title']?></h3>
+                <p><?= $location['location']?></p>
+                <p><?= $location['description']?></p>
+                <a href="editTrip.php?id=<?= $location['id']  ?>" class="btn btn-light">Bijwerken</a>
+                <a href="../assets/include/removeTrip.php?id=<?= $location['id']  ?>" class="btn btn-danger">Verwijderen</a>
             </div>
-            <h3 class="mt-3">Spanje</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor tempor urna. Vivamus eget odio ut lectus auctor rhoncus quis nec tellus. Nunc est lacus, fringilla et risus in</p>
-        </div>
+        <?php
+        endforeach;
+        ?>
     </div>
 </section>
 
