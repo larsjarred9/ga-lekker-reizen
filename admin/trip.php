@@ -28,8 +28,7 @@ if($_SESSION['user']['role'] != 1) {
     }
 
 
-    $registrations = $database->select('Bookings', ['[>]locations' => 'location_id'],'*', ['location_id' => $_GET['id']]);
-    var_dump($registrations);
+    $reservations = $database->select('Reservations', ["[>]Bookings" => ["booking_id" => "id"], "[>]Users" => ["user_id" => "id"]], ['Bookings.student_number', 'Users.first_name', 'Users.last_name', 'Bookings.id_number', 'Bookings.remark'], ['location_id' => $_GET['id']]);
 
     $location = $database->get('Locations', ["id", "title", "location", "type", "begin_date", "end_date", "capacity", "description",],["id" => $_GET['id']]); ?>
     <h2><?= $location['title'] ?></h2>
@@ -55,17 +54,19 @@ if($_SESSION['user']['role'] != 1) {
                 <th scope="col">Student</th>
                 <th scope="col">Voornaam</th>
                 <th scope="col">Achternaam</th>
-                <th scope="col">Reis</th>
                 <th scope="col">BSN</th>
                 <th scope="col">Additioneel</th>
             </tr>
             </thead>
             <tbody>
-                <?php
-//                foreach($registrations as $registration):
-//                    var_dump($registration);
-//                endforeach;
-                ?>
+            <?php foreach($reservations as $reservation): ?>
+                <td><?= $reservation['student_number'] ?></td>
+                <td><?= $reservation['first_name'] ?></td>
+                <td><?= $reservation['last_name'] ?></td>
+                <td><?= $reservation['id_number'] ?></td>
+                <td><?= $reservation['remark'] ?></td>
+
+            <?php endforeach;?>
             </tbody>
         </table>
     </div>

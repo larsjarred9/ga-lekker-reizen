@@ -69,36 +69,32 @@ if($_SESSION['user']['role'] != 1) {
 </section>
 
 <section class="container">
+    <?php $reservations = $database->select('Reservations', ["[>]Bookings" => ["booking_id" => "id"], "[>]Locations" => ["location_id" => "id"], "[>]Users" => ["user_id" => "id"]], ['Bookings.student_number', 'Users.first_name', 'Users.last_name', 'Locations.location', 'Locations.id', 'Locations.begin_date',  'Bookings.id_number', 'Bookings.remark']); ?>
     <h2>Inschrijvingen</h2>
-    <p>Alle inschrijvingen in een algemeen overzicht</p>
+    <p>Alle inschrijvingen in een algemeen overzicht.</p>
     <table class="table table-light table-striped data-table">
         <thead>
         <tr>
-            <th scope="col">Nummer</th>
+            <th scope="col">Student</th>
             <th scope="col">Voornaam</th>
             <th scope="col">Achternaam</th>
             <th scope="col">Reis</th>
+            <th scope="col">Datum</th>
+            <th scope="col">BSN</th>
+            <th scope="col">Additioneel</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry the Bird</td>
-            <td>@fat</td>
-            <td>@twitter</td>
-        </tr>
+        <?php foreach($reservations as $reservation): ?>
+            <td><?= $reservation['student_number'] ?></td>
+            <td><?= $reservation['first_name'] ?></td>
+            <td><?= $reservation['last_name'] ?></td>
+            <td><a href="trip.php?id=<?= $reservation['id'] ?>"><?= $reservation['location'] ?></a></td>
+            <td><?= $reservation['begin_date'] ?></td>
+            <td><?= $reservation['id_number'] ?></td>
+            <td><?= $reservation['remark'] ?></td>
+
+        <?php endforeach;?>
         </tbody>
     </table>
 </section>
