@@ -28,7 +28,7 @@ if($_SESSION['user']['role'] != 1) {
     }
 
 
-    $registrations = $database->select('Bookings', ['[>]locations' => 'ocation_id'],'*', ['location_id' => $_GET['id']]);
+    $registrations = $database->select('Bookings', ['[>]locations' => 'location_id'],'*', ['location_id' => $_GET['id']]);
     var_dump($registrations);
 
     $location = $database->get('Locations', ["id", "title", "location", "type", "begin_date", "end_date", "capacity", "description",],["id" => $_GET['id']]); ?>
@@ -41,7 +41,7 @@ if($_SESSION['user']['role'] != 1) {
         <p><b>Type:</b> <?= $location['type'] ?></p>
         <p><b>Begin Datum:</b> <?= $location['begin_date'] ?></p>
         <p><b>Eind Datum:</b> <?= $location['end_date'] ?></p>
-        <p><b>Inschrijvingen:</b> X / <?= $location['capacity'] ?></p>
+        <p><b>Inschrijvingen:</b> <?= $count = $database->count('Reservations', ['location_id' => $_GET['id']]) ?> / <?= $location['capacity'] ?></p>
     </div>
 </section>
 
