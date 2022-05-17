@@ -1,6 +1,6 @@
 
 <?php
-session_start();
+require_once('assets/include/config.php');
 if($_SESSION['user']) {
     include('assets/include/index.php');
 }

@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $SETTING['root_url'] = realpath(__DIR__.'/../../');
 require $SETTING['root_url'].'/vendor/autoload.php';
 

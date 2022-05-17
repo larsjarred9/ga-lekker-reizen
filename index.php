@@ -1,4 +1,4 @@
-<?php session_start() ?>
+<?php require_once('assets/include/config.php');?>
 <!doctype html>
 <html lang="nl">
 <head>
