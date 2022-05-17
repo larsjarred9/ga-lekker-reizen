@@ -16,15 +16,11 @@ if($_SESSION['user']) {
 <body>
 <?php include('assets/include/navbar.php')?>
 
-<header>
-    <div class="container">
-        <!-- Plaats hier nog content -->
-    </div>
-</header>
+<header></header>
 
 <section class="container">
     <h1>Inloggen</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque finibus nulla sit amet leo cursus maximus. Sed porttitor arcu et orci iaculis sagittis. Mauris gravida consequat erat, non dictum nisl elementum non.</p>
+    <p>Welkom! Voer u gegevens in om verder te gaan.</p>
     <?php
     if($_GET['error']) {
         echo '<div class="alert alert-danger" role="alert">'.$_GET['error'].'</div>';
@@ -32,7 +28,7 @@ if($_SESSION['user']) {
     ?>
     <form action="/assets/include/login.php" method="post">
         <label>E-Mail</label>
-        <input required name="email" type="email" class="form-control">
+        <input placeholder="studentnumr@glr.nl" required name="email" type="email" class="form-control">
 
         <label class="mt-3">Wachtwoord</label>
         <input required name="password" type="password" class="form-control">

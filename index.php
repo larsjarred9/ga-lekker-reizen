@@ -11,11 +11,7 @@
 
     <?php include('assets/include/navbar.php')?>
 
-    <header>
-        <div class="container">
-            <!-- Plaats hier nog content -->
-        </div>
-    </header>
+    <header></header>
 
     <section class="container" id="reizen">
         <h2>Reizen</h2>

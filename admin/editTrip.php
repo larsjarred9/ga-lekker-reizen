@@ -17,11 +17,7 @@ if($_SESSION['user']['role'] != 1) {
 
 <?php include('../assets/include/navbar.php')?>
 
-<header>
-    <div class="container">
-        <!-- Plaats hier nog content -->
-    </div>
-</header>
+<header></header>
 
 <section class="container">
     <?php
