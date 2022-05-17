@@ -37,6 +37,7 @@
 
         foreach($locations as $location):?>
             <div class="col">
+                <a href="trip.php?id=<?= $location['id']; ?>" class="text-decoration-none">
                 <div class="card" style="background-image: url('../assets/images/uploads/<?= $location['id'] ?>.jpg')">
                     <div class="card-body d-flex align-self-end">
                         <div class="d-flex justify-content-end">
@@ -51,6 +52,7 @@
                 <p><?= $location['description']?></p>
                 <a href="editTrip.php?id=<?= $location['id']  ?>" class="btn btn-light">Bijwerken</a>
                 <a href="../assets/include/removeTrip.php?id=<?= $location['id']  ?>" onclick="return confirm('Weet je zeker dat je deze reis wilt verwijderen?')" class="btn btn-danger">Verwijderen</a>
+                </a>
             </div>
         <?php
         endforeach;
