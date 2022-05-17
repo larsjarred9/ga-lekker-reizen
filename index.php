@@ -21,40 +21,28 @@
         <h2>Reizen</h2>
         <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1">
             <?php
-            require_once('assets/include/config.php');
-            $locations = $database->select('Locations', ['title','location','description','capacity']);
+            $locations = $database->select('Locations', ['id','title','location','description','begin_date','end_date','capacity']);
 
-//            foreach($locations as $location):
-//                var_dump($location);
-//            endforeach;
-            ?>
-            <div class="col">
-                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1495562569060-2eec283d3391?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80')">
-                    <div class="card-body">
-                        <p>Test</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1495562569060-2eec283d3391?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80')">
-                    <div class="card-body">
-                        <p>Test</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card" style="background-image: url('https://images.unsplash.com/photo-1495562569060-2eec283d3391?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80')">
-                    <div class="card-body d-flex align-self-end">
-                        <div class="d-flex justify-content-end">
-                            <div class="d-flex align-self-end">
-                                <p class="bg-light p-2 text-center fs-5">20 December<br>2022</p>
+            foreach($locations as $location):?>
+                <div class="col">
+                    <a href="login.php" class="text-decoration-none">
+                        <div class="card" style="background-image: url('assets/images/uploads/<?= $location['id'] ?>.jpg')">
+                            <div class="card-body d-flex align-self-end">
+                                <div class="d-flex justify-content-end">
+                                    <div class="d-flex align-self-end">
+                                        <p class="bg-light p-2 text-center fs-5"><?= date('d M Y',strtotime($location['begin_date'])) ?></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <h3 class="mt-3"><?= $location['title']?></h3>
+                        <p><?= $location['location']?></p>
+                        <p><?= $location['description']?></p>
+                    </a>
                 </div>
-                <h3 class="mt-3">Spanje</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor tempor urna. Vivamus eget odio ut lectus auctor rhoncus quis nec tellus. Nunc est lacus, fringilla et risus in</p>
-            </div>
+            <?php
+            endforeach;
+            ?>
         </div>
     </section>
 
@@ -120,7 +108,7 @@
                 <a href="https://wa.me/0637449583" target="_blank" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> Whatsapp</a>
             </div>
             <div class="col-md-10 mx-auto col-lg-5">
-                <img src="images/airplane.jpg" class="img-fluid">
+                <img src="assets/images/airplane.jpg" class="img-fluid">
             </div>
         </div>
     </section>
