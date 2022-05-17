@@ -1,4 +1,4 @@
-<section class="container col-xl-10 col-xxl-8">
+<section class="container col-xl-10 col-xxl-8" id="contact">
     <div class="row align-items-center">
         <div class="col-lg-7 text-center text-lg-start">
             <h2 class="">Contact</h2>
