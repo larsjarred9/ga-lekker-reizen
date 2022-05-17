@@ -67,6 +67,7 @@ if($_SESSION['user']['role'] != 0) {
         if(!$aangemeld):
             if($count < $location['capacity']):?>
                 <p>Vul u gegevens in. Na verzending worden u gegevens gecontrolleerd en ontvangt u een bevestiging in u e-mail inbox.</p>
+                <p><small>Nog <?= ($location['capacity']-$count) ?> plek(ken) beschikbaar</small>
                 <form action="/assets/include/bookTrip.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?= $_GET['id']?>"
                     <label>Voornaam</label>
@@ -88,6 +89,7 @@ if($_SESSION['user']['role'] != 0) {
 
 
                     <button type="submit" name="submit" class="btn btn-primary mt-3">Inschrijven</button>
+                    </p>
                 </form>
             <?php else: ?>
                 <p>Helaas. Alle beschikbare plekken zijn al gereserveerd door medestudenten. Hervers regelmatige deze pagina voor afvallers of boek een andere reis.</p>

@@ -43,6 +43,7 @@
                         <h3 class="mt-3"><?= $location['title']?></h3>
                         <p><?= $location['location']?></p>
                         <p><?= $location['description']?></p>
+                        <p><small><i><?php $count = $database->count('Reservations', ['location_id' => $location['id']]); $count = ($location['capacity']-$count); if($count > 0) { echo $count.' Plek(ken) beschikbaar';} else {echo "<span class='text-danger'>VOL | Geen plekken beschikbaar</span>";}?></i></small></p>
                     </a>
                 </div>
             <?php
