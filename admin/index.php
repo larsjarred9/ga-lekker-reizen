@@ -50,7 +50,7 @@
                 <p><?= $location['location']?></p>
                 <p><?= $location['description']?></p>
                 <a href="editTrip.php?id=<?= $location['id']  ?>" class="btn btn-light">Bijwerken</a>
-                <a href="../assets/include/removeTrip.php?id=<?= $location['id']  ?>" class="btn btn-danger">Verwijderen</a>
+                <a href="../assets/include/removeTrip.php?id=<?= $location['id']  ?>" onclick="return confirm('Weet je zeker dat je deze reis wilt verwijderen?')" class="btn btn-danger">Verwijderen</a>
             </div>
         <?php
         endforeach;
