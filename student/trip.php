@@ -39,6 +39,7 @@ if($_SESSION['user']['role'] != 0) {
 
 
     $location = $database->get('Locations', ["id", "title", "location", "type", "begin_date", "end_date", "capacity", "description",],["id" => $_GET['id']]); ?>
+    <a href="../index.php" class="btn btn-primary float-end"><i class="fa-solid fa-arrow-left-long"></i> Terug naar reizen</a>
     <h2><?= $location['title'] ?></h2>
     <p><?= $location['description'] ?></p>
     <br>
