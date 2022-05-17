@@ -1,10 +1,14 @@
 <?php
 require_once('config.php');
+
+// Check of sessie gezet is
+if(!$_SESSION['user']) {
+    header('location: ../../login.php');
+}
+// Check of gebruiker een user is
 if($_SESSION['user']['role'] != 0) {
     header('location: ../../login.php');
 }
-
-
 
 // Check of count niet overschreven word
 $location = $database->get('Locations', 'capacity', ['id' => $_POST['id']]);

@@ -1,5 +1,10 @@
 <?php
 require_once('config.php');
+// Check of sessie gezet is
+if(!$_SESSION['user']) {
+    header('location: ../../login.php');
+}
+// Check of gebruiker een user is
 if($_SESSION['user']['role'] != 0) {
     header('location: ../../login.php');
 }
