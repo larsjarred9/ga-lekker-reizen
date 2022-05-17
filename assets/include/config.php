@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+// Autoloader op alle paginas laten werken
 $SETTING['root_url'] = realpath(__DIR__.'/../../');
 require $SETTING['root_url'].'/vendor/autoload.php';
 

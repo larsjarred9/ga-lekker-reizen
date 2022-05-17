@@ -4,7 +4,7 @@ if($_SESSION['user']['role'] != 1) {
     header('location: ../../login.php');
 }
 
-
+// Check of afbeelding meegeupload is
 if(isset($_FILES["image"])) {
 
     $target_dir = "../images/uploads/";

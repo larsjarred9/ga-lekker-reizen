@@ -22,7 +22,7 @@ if($_SESSION['user']['role'] != 1) {
     if(!$_GET['id']) {
         header('location: index.php?error=Reis kon niet gevonden worden');
     }
-    $reservations = $database->select('Reservations', ["[>]Bookings" => ["booking_id" => "id"], "[>]Users" => ["user_id" => "id"]], ['Bookings.student_number', 'Users.first_name', 'Users.last_name', 'Bookings.id_number', 'Bookings.remark'], ['location_id' => $_GET['id']]);
+    // Reizen weergeven
     $location = $database->get('Locations', ["id", "title", "location", "type", "begin_date", "end_date", "capacity", "description",],["id" => $_GET['id']]); ?>
 
     <a href="index.php" class="btn btn-primary float-end"><i class="fa-solid fa-arrow-left-long"></i> Terug naar reizen</a>
@@ -40,6 +40,8 @@ if($_SESSION['user']['role'] != 1) {
 </section>
 
 <section class="bg-light">
+    <?php // Alle inschrijvingen weergeven doormiddel van een join sql statement en foreach om de tabellen op te bouwen
+    $reservations = $database->select('Reservations', ["[>]Bookings" => ["booking_id" => "id"], "[>]Users" => ["user_id" => "id"]], ['Bookings.student_number', 'Users.first_name', 'Users.last_name', 'Bookings.id_number', 'Bookings.remark'], ['location_id' => $_GET['id']]); ?>
     <div class="container">
         <h2>Inschrijvingen</h2>
         <p>Alle inschrijvingen in een algemeen overzicht</p>

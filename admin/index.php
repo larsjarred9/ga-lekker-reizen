@@ -32,6 +32,7 @@ if($_SESSION['user']['role'] != 1) {
     <p>Beheer & bekijk hier gemakkelijk de aangemaakte reizen. Klik op een reis voor meer details om inschrijvingen te zien en om wijzigingen aan te brengen.</p>
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1">
         <?php
+        // Reizen weergeven
         $locations = $database->select('Locations', ['id','title','location','description','begin_date','end_date','capacity']);
 
         foreach($locations as $location):?>
@@ -65,7 +66,8 @@ if($_SESSION['user']['role'] != 1) {
 </section>
 
 <section class="container">
-    <?php $reservations = $database->select('Reservations', ["[>]Bookings" => ["booking_id" => "id"], "[>]Locations" => ["location_id" => "id"], "[>]Users" => ["user_id" => "id"]], ['Bookings.student_number', 'Users.first_name', 'Users.last_name', 'Locations.location', 'Locations.id', 'Locations.begin_date',  'Bookings.id_number', 'Bookings.remark']); ?>
+    <?php // Alle inschrijvingen weergeven doormiddel van een join sql statement en foreach om de tabellen op te bouwen
+    $reservations = $database->select('Reservations', ["[>]Bookings" => ["booking_id" => "id"], "[>]Locations" => ["location_id" => "id"], "[>]Users" => ["user_id" => "id"]], ['Bookings.student_number', 'Users.first_name', 'Users.last_name', 'Locations.location', 'Locations.id', 'Locations.begin_date',  'Bookings.id_number', 'Bookings.remark']); ?>
     <h2>Inschrijvingen</h2>
     <p>Alle inschrijvingen in een algemeen overzicht.</p>
     <table class="table table-light table-striped data-table">

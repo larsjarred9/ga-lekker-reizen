@@ -37,7 +37,7 @@ if($_SESSION['user']['role'] != 0) {
         echo '<div class="alert alert-danger" role="alert">' . $_GET['error'] . '</div>';
     }
 
-
+    // Reizen weergeven
     $location = $database->get('Locations', ["id", "title", "location", "type", "begin_date", "end_date", "capacity", "description",],["id" => $_GET['id']]); ?>
     <a href="../index.php" class="btn btn-primary float-end"><i class="fa-solid fa-arrow-left-long"></i> Terug naar reizen</a>
     <h2><?= $location['title'] ?></h2>
@@ -62,6 +62,8 @@ if($_SESSION['user']['role'] != 0) {
         $aangemeld = $database->has('Reservations', ['location_id' => $_GET['id'], 'user_id' => $_SESSION['user']['id']]);
 
         if(!$aangemeld):
+
+            // Check of de inschrijvingen niet de capacity overschreid,
             if($count < $location['capacity']):?>
                 <p>Vul u gegevens in. Na verzending worden u gegevens gecontrolleerd en ontvangt u een bevestiging in u e-mail inbox.</p>
                 <p><small>Nog <?= ($location['capacity']-$count) ?> plek(ken) beschikbaar</small>
