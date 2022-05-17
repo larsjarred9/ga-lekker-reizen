@@ -36,6 +36,7 @@ if($_SESSION['user']['role'] != 1) {
     <form action="/assets/include/editTrip.php" method="post" enctype="multipart/form-data">
         <label>Title</label>
         <input type="hidden" name="id" value="<?= $_GET['id']?>"
+        <label class="mt-3">Titel</label>
         <input required name="title" value="<?= $location['title']?>" maxlength="32" type="text" class="form-control">
 
         <label class="mt-3">Locatie</label>
