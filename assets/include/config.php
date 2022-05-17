@@ -1,5 +1,6 @@
 <?php
-require '../../vendor/autoload.php';
+$SETTING['root_url'] = realpath(__DIR__.'/../../');
+require $SETTING['root_url'].'/vendor/autoload.php';
 
 
 // Medoo database connectie
