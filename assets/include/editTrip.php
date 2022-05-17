@@ -4,10 +4,11 @@ if($_SESSION['user']['role'] != 1) {
     header('location: ../../login.php');
 }
 
-if(isset($_FILES["image"])) {
+
+if(!empty($_FILES['image']['name'])) {
     $target_dir = "../images/uploads/";
     $target_file = $target_dir . basename($_FILES["image"]["name"]);
-    unlink($target_file);
+    unlink('../images/uploads/'.$_POST['id'].'.jpg');
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
     // Alleen JPG & JPEG
