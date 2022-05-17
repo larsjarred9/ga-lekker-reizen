@@ -17,7 +17,7 @@ if($count >= $location) {
 }
 
 // Check of persoon al is aangemeld
-$aangemeld = $database->has('Reservations', ['location_id' => $_GET['id'], 'user_id' => $_SESSION['user']['id']]);
+$aangemeld = $database->has('Reservations', ['location_id' => $_POST['id'], 'user_id' => $_SESSION['user']['id']]);
 
 if($aangemeld) {
     header('location: ../../student/trip.php?id='.$_POST['id'].'&error=Je bent al inschreven voor deze reis');
