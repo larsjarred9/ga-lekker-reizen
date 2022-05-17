@@ -8,7 +8,7 @@
             <a href="https://wa.me/0637449583" target="_blank" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> Whatsapp</a>
         </div>
         <div class="col-md-10 mx-auto col-lg-5">
-            <img src="<?php $_ENV['HTTP_HOST']?>/assets/images/airplane.jpg" class="img-fluid">
+            <img src="<?php $_ENV['HTTP_HOST']?>/assets/images/contact.jpg" class="img-fluid">
         </div>
     </div>
 </section>
