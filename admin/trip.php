@@ -41,7 +41,7 @@ if($_SESSION['user']['role'] != 1) {
 
 <section class="bg-light">
     <?php // Alle inschrijvingen weergeven doormiddel van een join sql statement en foreach om de tabellen op te bouwen
-    $reservations = $database->select('Reservations', ["[>]Bookings" => ["booking_id" => "id"], "[>]Users" => ["user_id" => "id"]], ['Bookings.student_number', 'Users.first_name', 'Users.last_name', 'Bookings.id_number', 'Bookings.remark'], ['location_id' => $_GET['id']]); ?>
+    $reservations = $database->select('Reservations', ["[>]Bookings" => ["booking_id" => "id"], "[>]Users" => ["user_id" => "id"]], ['Bookings.student_number', 'Users.first_name', 'Users.last_name', 'Users.email', 'Bookings.id_number', 'Bookings.remark'], ['location_id' => $_GET['id']]); ?>
     <div class="container">
         <h2>Inschrijvingen</h2>
         <p>Alle inschrijvingen in een algemeen overzicht</p>
@@ -51,6 +51,7 @@ if($_SESSION['user']['role'] != 1) {
                 <th scope="col">Student</th>
                 <th scope="col">Voornaam</th>
                 <th scope="col">Achternaam</th>
+                <th scope="col">E-Mail</th>
                 <th scope="col">BSN</th>
                 <th scope="col">Additioneel</th>
             </tr>
@@ -60,6 +61,7 @@ if($_SESSION['user']['role'] != 1) {
                 <td><?= $reservation['student_number'] ?></td>
                 <td><?= $reservation['first_name'] ?></td>
                 <td><?= $reservation['last_name'] ?></td>
+                <td><?= $reservation['email'] ?></td>
                 <td><?= $reservation['id_number'] ?></td>
                 <td><?= $reservation['remark'] ?></td>
 
