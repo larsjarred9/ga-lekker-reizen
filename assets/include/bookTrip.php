@@ -1,6 +1,9 @@
 <?php
 require_once('config.php');
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+
 // Check of sessie gezet is
 if(!$_SESSION['user']) {
     header('location: ../../login.php');
@@ -63,6 +66,30 @@ $registration = $database->insert("Reservations", [
 if($booking->rowCount() < 1) {
     header('location: ../../student/trip.php?id='.$_POST['id'].'&error=Inschrijving kon niet worden aangemaakt');
 }
+
+$loc = $database->get('Locations', ['location','begin_date','end_date'], ['id' => $_POST['id']]);
+
+$mail = new PHPMailer();
+
+// E-Mail instellingen
+$mail->isSMTP();
+$mail->Host = 'mail.speetjens.net';
+$mail->SMTPAuth = true;
+$mail->Username = 'glr@speetjens.net';
+$mail->Password = 'khQL3fI4';
+$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+$mail->Port = 465;
+
+// Informatie
+$mail->setFrom('glr@speetjens.net', 'GLR');
+$mail->addAddress($_SESSION['user']['email']);
+
+// Content
+$mail->isHTML(true);
+$mail->Subject = 'GLR | Inschrijving ontvangen';
+$mail->Body = 'Beste '.$_SESSION['user']['first_name'].',<br><br>We hebben je inscrijving ontvangen voor onze reis naar <b>'.$loc["location"].'</b> op '.$loc["begin_date"].' tot '.$loc["end_date"].'.<br><br><br>Binnenkort ontvang je van ons een factuur en meer informatie. Vergeet niet je glimlach en je paspoort zo ga je Lekkerder op reis!';
+
+$mail->send();
 
 // Terug naar reis
 header('location: ../../student/trip.php?id='.$_POST['id'].'&success=We hebben je inschrijving ontvangen. Je zult over enkele ongeblikken een e-mail ontvangen ter bevestiging');
