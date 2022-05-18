@@ -58,6 +58,8 @@ if($_SESSION['user']['role'] != 0) {
         <?php
 
 
+        if(date('Y-m-d') < $location['begin_date']):
+
         // Check of persoon al is aangemeld
         $aangemeld = $database->has('Reservations', ['location_id' => $_GET['id'], 'user_id' => $_SESSION['user']['id']]);
 
@@ -95,6 +97,8 @@ if($_SESSION['user']['role'] != 0) {
             <?php endif; else:?>
             <p>Je bent al aangemeld voor deze reis. Indien u zich wil afmelden kan dit gemakkelijk via de onderstaande knop doen. Indien u al een betaling heeft verricht moet u contact met ons opnemen.</p>
             <a href="../assets/include/cancelTrip.php?id=<?= $_GET['id']?>" class="btn btn-primary"><i class="fa-solid fa-power-off"></i> Afmelden</a>
+        <?php endif; else:?>
+        <p>Het is niet meer mogenlijk om jezelf in en uit te schrijven voor deze reis. De reis is namenlijk al begonnen.</p>
         <?php endif;?>
     </div>
 </section>
