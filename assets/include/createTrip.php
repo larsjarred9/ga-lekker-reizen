@@ -4,6 +4,16 @@ if($_SESSION['user']['role'] != 1) {
     header('location: ../../login.php');
 }
 
+if(strlen($_POST['title']) > 32 || strlen($_POST['location']) > 32 || strlen($_POST['type']) > 32 || strlen($_POST['capacity']) > 5) {
+    header('location: ../../admin/createTrip.php?error=Een of meerdere velden zijn te lang. Probeer de velden in te korten');
+    return false;
+}
+
+if(!is_numeric($_POST['capacity'])) {
+    header('location: ../../admin/createTrip.php?error=Capaciteit mag alleen een nummer zijn');
+    return false;
+}
+
 // Check of afbeelding meegeupload is
 if(isset($_FILES["image"])) {
 
