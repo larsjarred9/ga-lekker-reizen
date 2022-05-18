@@ -22,7 +22,7 @@
         <?php endif;?>
         <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1">
             <?php
-            $locations = $database->select('Locations', ['id','title','location','description','begin_date','end_date','capacity']);
+            $locations = $database->select('Locations', ['id','title','location','description','begin_date','end_date','capacity'], ['end_date[>=]' => date("Y-m-d")]);
 
             foreach($locations as $location):?>
                 <div class="col">
