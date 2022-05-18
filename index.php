@@ -39,7 +39,9 @@
                         <h3 class="mt-3"><?= $location['title']?></h3>
                         <p><?= $location['location']?></p>
                         <p><?= $location['description']?></p>
+                        <?php if(date('Y-m-d') < $location['begin_date']):?>
                         <p><small><i><?php $count = $database->count('Reservations', ['location_id' => $location['id']]); $count = ($location['capacity']-$count); if($count > 0) { echo $count.' Plek(ken) beschikbaar';} else {echo "<span class='text-danger'>VOL | Geen plekken beschikbaar</span>";}?></i></small></p>
+                        <?php else: echo "<p class='text-danger'><small><i>Niet meer beschikbaar</i></small></p>"; endif;?>
                     </a>
                 </div>
             <?php

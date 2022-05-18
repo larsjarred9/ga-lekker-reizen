@@ -50,7 +50,9 @@ if($_SESSION['user']['role'] != 1) {
                 <h3 class="mt-3"><?= $location['title']?></h3>
                 <p><?= $location['location']?></p>
                 <p><?= $location['description']?></p>
-                <p><small><i><?php $count = $database->count('Reservations', ['location_id' => $location['id']]); $count = ($location['capacity']-$count); if($count > 0) { echo $count.' Plek(ken) beschikbaar';} else {echo "<span class='text-danger'>VOL | Geen plekken beschikbaar</span>";}?></i></small></p>
+                <?php if(date('Y-m-d') < $location['begin_date']):?>
+                    <p><small><i><?php $count = $database->count('Reservations', ['location_id' => $location['id']]); $count = ($location['capacity']-$count); if($count > 0) { echo $count.' Plek(ken) beschikbaar';} else {echo "<span class='text-danger'>VOL | Geen plekken beschikbaar</span>";}?></i></small></p>
+                <?php else: echo "<p class='text-danger'><small><i>Niet meer beschikbaar</i></small></p>"; endif;?>
                 <a href="editTrip.php?id=<?= $location['id']  ?>" class="btn btn-light">Bijwerken</a>
                 <a href="../assets/include/removeTrip.php?id=<?= $location['id']  ?>" onclick="return confirm('Weet je zeker dat je deze reis wilt verwijderen?')" class="btn btn-danger">Verwijderen</a>
                 </a>
