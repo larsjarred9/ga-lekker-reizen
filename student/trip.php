@@ -86,7 +86,7 @@ if($_SESSION['user']['role'] != 0) {
 
                     <label class="mt-3">Additionele Informatie</label>
                     <textarea name="remark" class="form-control"></textarea>
-                    <p><small>Vul hier gegevens in over bijvoorbeeld alergenen of lichamelijke klachten.</small></p>
+                    <p><small>Vul hier gegevens in over bijvoorbeeld allergenen of lichamelijke klachten.</small></p>
 
 
                     <button type="submit" name="submit" class="btn btn-primary mt-3">Inschrijven</button>
