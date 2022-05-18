@@ -10,6 +10,16 @@ if($_SESSION['user']['role'] != 0) {
     header('location: ../../login.php');
 }
 
+if(strlen($_POST['student_number']) > 6 || strlen($_POST['id_number']) > 9) {
+    header('location: ../../student/trip.php?id='.$_POST['id'].'&error=Een of meerdere velden zijn te lang. Probeer de velden in te korten');
+    return false;
+}
+
+if(!is_numeric($_POST['student_number']) || !is_numeric($_POST['bsn'])) {
+    header('location: ../../student/trip.php?id='.$_POST['id'].'&error=Student Nummer / BSN mag alleen een nummer zijn');
+    return false;
+}
+
 // Check of count niet overschreven word
 $location = $database->get('Locations', 'capacity', ['id' => $_POST['id']]);
 
